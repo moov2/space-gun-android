@@ -1,18 +1,15 @@
 package com.moov2.spacegun;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+
+import com.moov2.spacegun.gun.GunFragment;
 
 
-public class GunActivity extends Activity {
+public class GunActivity extends Activity implements GunFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +17,7 @@ public class GunActivity extends Activity {
         setContentView(R.layout.activity_gun);
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new GunFragment())
                     .commit();
         }
     }
@@ -48,19 +45,8 @@ public class GunActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_gun, container, false);
-            return rootView;
-        }
     }
 }
